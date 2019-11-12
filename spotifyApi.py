@@ -5,8 +5,8 @@ import json
 import time
 import collections
 
-CLIENT_ID = '3a8776f7600f4cf498dd6d8d5f56c53b'
-CLIENT_SECRET = 'c6d8ba43eeed4de28eded9adf6525fa4'
+CLIENT_ID = 'idhere'
+CLIENT_SECRET = 'secrethere'
 
 class SpotifyOauthError(Exception):
     pass
