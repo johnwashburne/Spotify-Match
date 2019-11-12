@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <title>Spotify Match</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+      <style>
+
+      body {
+        background: rgb(29,185,84);
+        background: linear-gradient(146deg, rgba(29,185,84,1) 0%, rgba(0,0,0,1) 86%, rgba(0,0,0,1) 86%, rgba(0,0,0,1) 100%);
+      }
+
+      h1 {
+        color: white;
+      }
+
+      h3 {
+        color: white;
+      }
+
+      .form-actions{
+        margin: 0;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      </style>
+      <div class="container">
+        <div class="row container">
+          <h1 class="mx-auto">User Comparison Results</h1>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="height:300px"><canvas id="myChart1"></canvas></div>
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="height:300px"><canvas id="myChart2"></canvas></div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <h3 class="mx-auto">{{name1}}'s and {{name2}}'s music tastes differ by {{difference}}%.</h3>
+          </div>
+          <div class="form-actions">
+              <a href="/" class="btn btn-light" role="button">Compare more users</a>
+          </div>
+        </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+      <script>
+        Chart.defaults.global.defaultFontColor = '#E8E8E8';
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'bar',
+
+          // The data for our dataset
+          data: {
+              labels: [
+                {% for genre in topgenres1 %}
+                  '{{genre}}',
+                {% endfor %}
+              ],
+              datasets: [{
+                  label: 'Genre Coefficient',
+                  backgroundColor: 'rgba(255, 99, 132, 1)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: [
+                    {% for item in data1 %}
+                      {{item}},
+                    {% endfor %}
+                  ]
+              }]
+          },
+
+          // Configuration options go here
+          options: {
+            legend:{
+              display: false
+            },
+            scales: {
+              xAxes: [{
+                gridLines: {
+                  color: "#E8E8E8",
+                  display: false
+                }
+              }],
+              yAxes: [{
+                gridLines: {
+                  color: "#E8E8E8"
+                }
+              }]
+            },
+            title: {
+              display: true,
+              text: '{{name1}}\'s Genre Data'
+            },
+            maintainAspectRatio: false
+          }
+        });
+      </script>
+      <script>
+        var ctx = document.getElementById('myChart2').getContext('2d');
+        var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'bar',
+
+          // The data for our dataset
+          data: {
+              labels: [
+                {% for genre in topgenres2 %}
+                  '{{genre}}',
+                {% endfor %}
+              ],
+              datasets: [{
+                  label: 'Genre Coefficient',
+                  backgroundColor: 'rgba(132, 99, 255, 1)',
+                  borderColor: 'rgb(132, 99, 255)',
+                  data: [
+                    {% for item in data2 %}
+                      {{item}},
+                    {% endfor %}
+                  ]
+              }]
+          },
+
+          // Configuration options go here
+          options: {
+            legend:{
+              display: false
+            },
+
+            scales: {
+              xAxes: [{
+                gridLines: {
+                  color: "#E8E8E8",
+                  display: false
+                }
+              }],
+              yAxes: [{
+                gridLines: {
+                  color: "#E8E8E8"
+                }
+              }]
+            },
+
+            title: {
+              display: true,
+              text: '{{name2}}\'s Genre Data'
+            },
+            maintainAspectRatio: false
+          }
+        });
+      </script>
+    </body>
+</html>

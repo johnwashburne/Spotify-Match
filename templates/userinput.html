@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Spotify Match</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+      <style>
+        .form-actions{
+          margin: 0;
+          text-align: center;
+        }
+        .container {
+          margin-top: 30px;
+        }
+
+        body {
+          background: rgb(29,185,84);
+          background: linear-gradient(146deg, rgba(29,185,84,1) 0%, rgba(0,0,0,1) 86%, rgba(0,0,0,1) 86%, rgba(0,0,0,1) 100%);
+        }
+
+        h1 {
+          color: white;
+        }
+
+        label {
+          color: white;
+        }
+
+        p {
+          color: white;
+        }
+      </style>
+      <div class="container">
+        <h1>Spotify Match</h1>
+        <p>This app compares two spotify users and produces a percentage difference in their music tastes by calculating the euclidean distance of "music profiles" from each other. These music profiles are generated using data from their saved spotify playlists. Enter two profile <a href="https://support.spotify.com/us/using_spotify/the_basics/find-and-share-your-profile/">share links</a> to begin. If you know both usernames, you can input each as <strong>"spotify/(USERNAME HERE)?user"</strong>.</p>
+        <form action="" method="post">
+          <div class="form-group">
+                {{form.user1.label}} {{ form.user1 }}
+          </div>
+          <div clas="form-group">
+            {{form.user2.label}} {{ form.user2 }}
+          </div>
+          {{ form.csrf_token }}
+          <div class="form-actions">
+            <button class="btn btn-light" style="margin-top: 10px;" type="submit">Submit</button>
+          </div>
+        </form>
+        <p>Note: load times can take up to 60 seconds due to the large amounts of data being pulled from the Spotify API</p>
+      </div>
+      <script>
+        document.getElementsByTagName("input")[0].setAttribute("class", "form-control");
+        document.getElementsByTagName("input")[1].setAttribute("class", "form-control");
+      </script>
+    </body>
+</html>
