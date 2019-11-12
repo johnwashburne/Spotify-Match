@@ -4,5 +4,5 @@ I began developing this project as a spin-off of my group's main project at Vand
 \
 Go check it out! [Spotify Match](https://spotify-genrematch.herokuapp.com/)
 \
-![Home Screen](ss1.png)
-![Results View](ss2.png)
+![Home Screen](ss1.PNG)
+![Results View](ss2.PNG)
