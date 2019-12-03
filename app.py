@@ -11,11 +11,15 @@ def index():
     form = UsersForm()
     if form.validate_on_submit():
         result = request.form
-        user1 = result.get('user1')
-        user1 = user1.split('?')[0].split('/')[-1]
-        user2 = result.get('user2')
-        user2 = user2.split('?')[0].split('/')[-1]
-        print('\n\n\n' +user1)
+        input_selection = result.get('input_type')
+        if input_selection == 'username':
+            user1 = result.get('user1')
+            user2 = result.get('user2')
+        else:
+            user1 = result.get('user1')
+            user1 = user1.split('?')[0].split('/')[-1]
+            user2 = result.get('user2')
+            user2 = user2.split('?')[0].split('/')[-1]
         return redirect('/result/{}/{}/'.format(user1, user2))
     return render_template('userinput.html', form=form)
 
